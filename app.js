@@ -8,9 +8,8 @@
   "use strict";
 
   // ───── DOM refs ─────
-  const bullWrap       = document.getElementById("bull-wrap");
-  const manWrap        = document.getElementById("man-wrap");
-  const manBodyGroup   = document.getElementById("man-body-group");
+  const lanternLeft    = document.getElementById("lantern-left");
+  const lanternRight   = document.getElementById("lantern-right");
   const greetingInner  = document.getElementById("greeting-inner");
   const greetingWords  = document.querySelectorAll(".g-word");
   const greetingArabic = document.getElementById("greeting-arabic");
@@ -144,10 +143,7 @@
     ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
 
     // Reset all elements
-    gsap.set([bullWrap, manWrap], { opacity: 0 });
-    gsap.set(bullWrap, { x: "-120vw" });
-    gsap.set(manWrap, { x: "120vw" });
-    gsap.set(manBodyGroup, { rotation: 0, transformOrigin: "50% 100%" });
+    gsap.set([lanternLeft, lanternRight], { y: -350, opacity: 0 });
     gsap.set(greetingInner, { opacity: 0, scale: 0.8 });
     gsap.set(greetingWords, { opacity: 0, y: 30 });
     gsap.set(greetingArabic, { opacity: 0 });
@@ -165,15 +161,25 @@
     masterTL.to(bgMosque, { opacity: 1, duration: 2, ease: "power2.out" }, 0.3);
 
     // ────────────────────────────────
-    // STAGE 1 — The Greeting (First)
+    // Drop in Lanterns
+    // ────────────────────────────────
+    masterTL.to([lanternLeft, lanternRight], {
+      y: 0,
+      opacity: 1,
+      duration: 1.6,
+      ease: "back.out(1.2)"
+    }, 0.2);
+
+    // ────────────────────────────────
+    // STAGE 1 — The Greeting
     // ────────────────────────────────
     // Fade in greeting container
     masterTL.to(greetingInner, {
       opacity: 1,
       scale: 1,
-      duration: 0.6,
+      duration: 0.8,
       ease: "back.out(1.5)"
-    }, 0.5);
+    }, 0.6);
 
     // Animate each word
     greetingWords.forEach((word, i) => {
@@ -223,39 +229,6 @@
     masterTL.call(() => {
       commPairs.forEach(p => p.classList.add("is-active"));
     });
-
-    // ────────────────────────────────
-    // STAGE 3 — Transition Out
-    // ────────────────────────────────
-    // Pause to show the greeting card, then fade it out
-    masterTL.to({}, { duration: 3.5 });
-    
-    masterTL.to([greetingInner, communityLayer], {
-      opacity: 0,
-      y: -30,
-      duration: 0.8,
-      ease: "power2.in"
-    });
-
-    // ────────────────────────────────
-    // STAGE 4 — The Characters Entry (Meeting)
-    // ────────────────────────────────
-    masterTL.to(bullWrap, {
-      opacity: 1,
-      x: "-12vw",
-      duration: 2,
-      ease: "power3.out"
-    }, "+=0.2");
-
-    masterTL.to(manWrap, {
-      opacity: 1,
-      x: "12vw",
-      duration: 2,
-      ease: "power3.out"
-    }, "<"); // Starts at the same time as the bull
-
-    // Pause at the end of the entry
-    masterTL.to({}, { duration: 1.5 });
   }
 
   // ───── Init ─────

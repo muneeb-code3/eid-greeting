@@ -206,35 +206,59 @@ body {
   justify-content: center;
 }
 
-/* ——— Characters ——— */
-#characters-layer {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2vw;
+/* ——— Hanging Lanterns (Fanoos) ——— */
+.hanging-lantern {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: clamp(55px, 8vw, 85px);
   pointer-events: none;
+  transform-origin: 50% 0;
+  animation: sway 6s ease-in-out infinite alternate;
 }
 
-.character-wrap {
-  opacity: 0;
+#lantern-left {
+  left: clamp(20px, 12vw, 160px);
+  animation-duration: 6.5s;
 }
 
-#bull-wrap {
-  width: clamp(180px, 28vw, 340px);
-  transform: translateX(-120vw);
+#lantern-right {
+  right: clamp(20px, 15vw, 220px);
+  animation-duration: 5.5s;
+  animation-delay: -1.5s;
 }
 
-#man-wrap {
-  width: clamp(140px, 20vw, 260px);
-  transform: translateX(120vw);
+@keyframes sway {
+  0% { transform: rotate(-3deg); }
+  100% { transform: rotate(3deg); }
 }
 
-#bull-svg, #man-svg {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+.lantern-flicker {
+  animation: candleFlicker 3s ease-in-out infinite alternate;
+}
+
+@keyframes candleFlicker {
+  0%, 100% { opacity: 0.8; transform: scale(1) translate(0, 0); }
+  33% { opacity: 0.9; transform: scale(1.05) translate(0.5px, -0.5px); }
+  66% { opacity: 1; transform: scale(0.95) translate(-0.5px, 0.5px); }
+}
+
+/* ——— Rotating Mandala ——— */
+#bg-mandala {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(280px, 62vw, 520px);
+  height: clamp(280px, 62vw, 520px);
+  z-index: -1;
+  pointer-events: none;
+  animation: spinMandala 120s linear infinite;
+}
+
+@keyframes spinMandala {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* ——— Greeting ——— */
