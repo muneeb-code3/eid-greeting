@@ -182,27 +182,10 @@
     }, 0.5);
 
     // ────────────────────────────────
-    // STAGE 2 — The Climax (symbolic bow)
+    // STAGE 2 — Meeting & Pause
     // ────────────────────────────────
-    // Small pause, then man bows
-    masterTL.to(manBodyGroup, {
-      rotation: -25,
-      duration: 1.2,
-      ease: "power2.inOut"
-    }, "+=0.6");
-
-    // Hold the bow
-    masterTL.to({}, { duration: 1.0 });
-
-    // Man rises back up
-    masterTL.to(manBodyGroup, {
-      rotation: 0,
-      duration: 0.8,
-      ease: "power2.inOut"
-    });
-
-    // Small pause
-    masterTL.to({}, { duration: 0.4 });
+    // Let the characters face each other for a brief moment
+    masterTL.to({}, { duration: 1.2 });
 
     // ────────────────────────────────
     // STAGE 3 — The Greeting
