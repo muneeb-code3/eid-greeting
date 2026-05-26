@@ -165,46 +165,15 @@
     masterTL.to(bgMosque, { opacity: 1, duration: 2, ease: "power2.out" }, 0.3);
 
     // ────────────────────────────────
-    // STAGE 1 — The Entry
+    // STAGE 1 — The Greeting (First)
     // ────────────────────────────────
-    masterTL.to(bullWrap, {
-      opacity: 1,
-      x: "-12vw",
-      duration: 2,
-      ease: "power3.out"
-    }, 0.5);
-
-    masterTL.to(manWrap, {
-      opacity: 1,
-      x: "12vw",
-      duration: 2,
-      ease: "power3.out"
-    }, 0.5);
-
-    // ────────────────────────────────
-    // STAGE 2 — Meeting & Pause
-    // ────────────────────────────────
-    // Let the characters face each other for a brief moment
-    masterTL.to({}, { duration: 1.2 });
-
-    // ────────────────────────────────
-    // STAGE 3 — The Greeting
-    // ────────────────────────────────
-    // Fade out characters
-    masterTL.to([bullWrap, manWrap], {
-      opacity: 0,
-      scale: 0.9,
-      duration: 1,
-      ease: "power2.in"
-    });
-
     // Fade in greeting container
     masterTL.to(greetingInner, {
       opacity: 1,
       scale: 1,
       duration: 0.6,
       ease: "back.out(1.5)"
-    }, "-=0.3");
+    }, 0.5);
 
     // Animate each word
     greetingWords.forEach((word, i) => {
@@ -227,13 +196,13 @@
     masterTL.call(() => launchConfetti(250), null, "-=0.3");
 
     // ────────────────────────────────
-    // STAGE 4 — The Community
+    // STAGE 2 — The Community
     // ────────────────────────────────
     masterTL.to(communityLayer, {
       opacity: 1,
       duration: 0.6,
       ease: "power2.out"
-    }, "+=0.5");
+    }, "+=0.2");
 
     masterTL.to(commSub, {
       opacity: 1,
@@ -254,6 +223,39 @@
     masterTL.call(() => {
       commPairs.forEach(p => p.classList.add("is-active"));
     });
+
+    // ────────────────────────────────
+    // STAGE 3 — Transition Out
+    // ────────────────────────────────
+    // Pause to show the greeting card, then fade it out
+    masterTL.to({}, { duration: 3.5 });
+    
+    masterTL.to([greetingInner, communityLayer], {
+      opacity: 0,
+      y: -30,
+      duration: 0.8,
+      ease: "power2.in"
+    });
+
+    // ────────────────────────────────
+    // STAGE 4 — The Characters Entry (Meeting)
+    // ────────────────────────────────
+    masterTL.to(bullWrap, {
+      opacity: 1,
+      x: "-12vw",
+      duration: 2,
+      ease: "power3.out"
+    }, "+=0.2");
+
+    masterTL.to(manWrap, {
+      opacity: 1,
+      x: "12vw",
+      duration: 2,
+      ease: "power3.out"
+    }, "<"); // Starts at the same time as the bull
+
+    // Pause at the end of the entry
+    masterTL.to({}, { duration: 1.5 });
   }
 
   // ───── Init ─────
