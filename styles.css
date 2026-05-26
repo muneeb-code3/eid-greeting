@@ -49,6 +49,53 @@ body {
 }
 
 /* ══════════════════════════════════════════════
+   SENDER INFO CARD
+   ══════════════════════════════════════════════ */
+#sender-card {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 18px;
+  border: 1.5px solid rgba(212, 160, 74, 0.35);
+  border-radius: 14px;
+  background: rgba(15, 27, 53, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+#sender-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(212, 160, 74, 0.2);
+}
+
+.sender-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold-light);
+  opacity: 0.85;
+  margin-bottom: 2px;
+}
+
+.sender-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ══════════════════════════════════════════════
    REPLAY BUTTON
    ══════════════════════════════════════════════ */
 #replayBtn {
@@ -349,6 +396,22 @@ body {
    RESPONSIVE
    ══════════════════════════════════════════════ */
 @media (max-width: 600px) {
+  #sender-card {
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    border-radius: 10px;
+  }
+
+  .sender-label {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .sender-name {
+    font-size: 13px;
+  }
+
   #replayBtn {
     top: 12px;
     right: 12px;
