@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eid ul-Adha Mubarak — Blessed Greetings</title>
+  <meta name="description" content="A beautiful animated Eid ul-Adha greeting card. Wishing you and your family a blessed Eid." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════ REPLAY BUTTON ═══════════════════ -->
+  <button id="replayBtn" aria-label="Replay Animation">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="1 4 1 10 7 10"></polyline>
+      <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+    </svg>
+    <span>Replay</span>
+  </button>
+
+  <!-- ═══════════════════ BACKGROUND LAYER ═══════════════════ -->
+  <div id="bg-layer">
+    <!-- Large crescent moon -->
+    <svg id="bg-crescent" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="moonGlow" cx="50%" cy="50%" r="60%">
+          <stop offset="0%" stop-color="#fffbe6" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#fffbe6" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="100" cy="100" r="90" fill="url(#moonGlow)"/>
+      <circle cx="100" cy="100" r="60" fill="#fde68a" opacity="0.85"/>
+      <circle cx="125" cy="85" r="50" fill="#0f1b35"/>
+    </svg>
+
+    <!-- Stars scattered -->
+    <div id="stars-container"></div>
+
+    <!-- Mosque silhouette at bottom -->
+    <svg id="bg-mosque" viewBox="0 0 1200 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+      <defs>
+        <linearGradient id="mosqueGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a1a3e" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#0d0d26" stop-opacity="0.95"/>
+        </linearGradient>
+      </defs>
+      <!-- Main dome -->
+      <ellipse cx="600" cy="160" rx="120" ry="100" fill="url(#mosqueGrad)"/>
+      <rect x="480" y="160" width="240" height="100" fill="url(#mosqueGrad)"/>
+      <!-- Left minaret -->
+      <rect x="380" y="80" width="28" height="180" fill="url(#mosqueGrad)"/>
+      <ellipse cx="394" cy="80" rx="18" ry="14" fill="url(#mosqueGrad)"/>
+      <rect x="389" y="50" width="10" height="30" fill="url(#mosqueGrad)"/>
+      <circle cx="394" cy="48" r="6" fill="#fde68a" opacity="0.5"/>
+      <!-- Right minaret -->
+      <rect x="792" y="80" width="28" height="180" fill="url(#mosqueGrad)"/>
+      <ellipse cx="806" cy="80" rx="18" ry="14" fill="url(#mosqueGrad)"/>
+      <rect x="801" y="50" width="10" height="30" fill="url(#mosqueGrad)"/>
+      <circle cx="806" cy="48" r="6" fill="#fde68a" opacity="0.5"/>
+      <!-- Small side domes -->
+      <ellipse cx="440" cy="180" rx="50" ry="40" fill="url(#mosqueGrad)"/>
+      <ellipse cx="760" cy="180" rx="50" ry="40" fill="url(#mosqueGrad)"/>
+      <!-- Base -->
+      <rect x="340" y="230" width="520" height="30" fill="url(#mosqueGrad)"/>
+      <!-- Crescent on top of dome -->
+      <g transform="translate(595, 50)">
+        <circle cx="5" cy="5" r="7" fill="#fde68a" opacity="0.7"/>
+        <circle cx="8" cy="3" r="5.5" fill="#0f1b35"/>
+        <line x1="5" y1="14" x2="5" y2="22" stroke="#fde68a" stroke-width="2" opacity="0.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════ STAGE CONTAINER ═══════════════════ -->
+  <main id="stage">
+
+    <!-- ——— STAGE 1 & 2: Characters ——— -->
+    <div id="characters-layer">
+      <!-- BULL SVG -->
+      <div id="bull-wrap" class="character-wrap">
+        <svg id="bull-svg" viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Body -->
+          <ellipse cx="180" cy="185" rx="110" ry="70" fill="#5C3D2E"/>
+          <!-- Hump -->
+          <ellipse cx="140" cy="130" rx="50" ry="35" fill="#6B4930"/>
+          <!-- Head -->
+          <ellipse cx="280" cy="145" rx="40" ry="32" fill="#6B4930"/>
+          <!-- Snout -->
+          <ellipse cx="310" cy="155" rx="18" ry="14" fill="#7A573A"/>
+          <!-- Nostril -->
+          <circle cx="315" cy="155" r="3" fill="#3D2517"/>
+          <!-- Eye -->
+          <circle cx="288" cy="138" r="5" fill="#1a1a1a"/>
+          <circle cx="289" cy="137" r="2" fill="white" opacity="0.7"/>
+          <!-- Horns -->
+          <path d="M262 120 Q250 85 235 78" stroke="#D4A96A" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M272 118 Q280 82 295 75" stroke="#D4A96A" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <!-- Ear -->
+          <ellipse cx="265" cy="125" rx="10" ry="6" fill="#7A573A" transform="rotate(-20 265 125)"/>
+          <!-- Legs (front) -->
+          <rect x="130" y="235" width="18" height="55" rx="6" fill="#4A3020"/>
+          <rect x="160" y="235" width="18" height="55" rx="6" fill="#5C3D2E"/>
+          <!-- Legs (back) -->
+          <rect x="220" y="235" width="18" height="55" rx="6" fill="#4A3020"/>
+          <rect x="248" y="235" width="18" height="55" rx="6" fill="#5C3D2E"/>
+          <!-- Hooves -->
+          <rect x="128" y="283" width="22" height="8" rx="4" fill="#2a1a0f"/>
+          <rect x="158" y="283" width="22" height="8" rx="4" fill="#2a1a0f"/>
+          <rect x="218" y="283" width="22" height="8" rx="4" fill="#2a1a0f"/>
+          <rect x="246" y="283" width="22" height="8" rx="4" fill="#2a1a0f"/>
+          <!-- Tail -->
+          <path d="M70 175 Q50 165 45 180 Q42 195 55 190" stroke="#4A3020" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="50" cy="190" rx="6" ry="4" fill="#3D2517"/>
+          <!-- Belly highlight -->
+          <ellipse cx="185" cy="210" rx="70" ry="20" fill="#6B4930" opacity="0.5"/>
+          <!-- Decorative cloth on back -->
+          <path d="M110 150 Q180 125 250 155" stroke="#c2185b" stroke-width="3" fill="none" opacity="0.6"/>
+          <path d="M115 157 Q180 132 245 162" stroke="#f9a825" stroke-width="2" fill="none" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <!-- MAN SVG -->
+      <div id="man-wrap" class="character-wrap">
+        <svg id="man-svg" viewBox="0 0 240 340" xmlns="http://www.w3.org/2000/svg">
+          <g id="man-body-group">
+            <!-- Thobe / robe -->
+            <path d="M90 130 Q70 180 65 260 L65 300 L175 300 L175 260 Q170 180 150 130 Z" fill="#e8e0d4"/>
+            <!-- Robe shadow -->
+            <path d="M100 180 Q115 220 108 300 L130 300 Q125 220 120 180 Z" fill="#d4cdbf" opacity="0.5"/>
+            <!-- Robe collar -->
+            <path d="M95 130 Q120 145 145 130" stroke="#c2b8a3" stroke-width="2" fill="none"/>
+            <!-- Left arm -->
+            <path id="man-left-arm" d="M90 140 Q60 180 55 220" stroke="#c2a882" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <!-- Right arm -->
+            <path id="man-right-arm" d="M150 140 Q180 180 185 220" stroke="#c2a882" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <!-- Head -->
+            <circle cx="120" cy="100" r="35" fill="#d4a96a"/>
+            <!-- Keffiyeh / head covering -->
+            <ellipse cx="120" cy="85" rx="38" ry="28" fill="white"/>
+            <path d="M82 85 Q80 100 85 120 Q90 130 95 130" fill="white"/>
+            <path d="M158 85 Q160 100 155 120 Q150 130 145 130" fill="white"/>
+            <!-- Agal (head band) -->
+            <ellipse cx="120" cy="78" rx="36" ry="6" fill="#1a1a1a" opacity="0.7"/>
+            <!-- Face features -->
+            <circle cx="108" cy="98" r="3" fill="#2d1810"/>
+            <circle cx="132" cy="98" r="3" fill="#2d1810"/>
+            <circle cx="109" cy="97" r="1.2" fill="white" opacity="0.6"/>
+            <circle cx="133" cy="97" r="1.2" fill="white" opacity="0.6"/>
+            <!-- Eyebrows -->
+            <path d="M102 92 Q108 89 114 92" stroke="#2d1810" stroke-width="1.5" fill="none"/>
+            <path d="M126 92 Q132 89 138 92" stroke="#2d1810" stroke-width="1.5" fill="none"/>
+            <!-- Beard -->
+            <ellipse cx="120" cy="120" rx="18" ry="14" fill="#2d1810" opacity="0.7"/>
+            <!-- Nose -->
+            <path d="M120 102 Q118 108 120 112" stroke="#b8925c" stroke-width="1.5" fill="none"/>
+            <!-- Feet -->
+            <ellipse cx="95" cy="303" rx="16" ry="6" fill="#8B7355"/>
+            <ellipse cx="145" cy="303" rx="16" ry="6" fill="#8B7355"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ——— STAGE 3: Greeting Text ——— -->
+    <div id="greeting-layer">
+      <div id="greeting-inner">
+        <!-- Bismillah decoration -->
+        <div id="bismillah-decor">
+          <svg viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="20" x2="90" y2="20" stroke="url(#goldLine)" stroke-width="1.5"/>
+            <circle cx="100" cy="20" r="4" fill="#d4a04a"/>
+            <circle cx="115" cy="20" r="2.5" fill="#d4a04a" opacity="0.7"/>
+            <circle cx="125" cy="20" r="4" fill="#d4a04a"/>
+            <path d="M138 12 Q150 4 162 12" stroke="#d4a04a" stroke-width="1.5" fill="none"/>
+            <path d="M138 28 Q150 36 162 28" stroke="#d4a04a" stroke-width="1.5" fill="none"/>
+            <circle cx="175" cy="20" r="4" fill="#d4a04a"/>
+            <circle cx="185" cy="20" r="2.5" fill="#d4a04a" opacity="0.7"/>
+            <circle cx="200" cy="20" r="4" fill="#d4a04a"/>
+            <line x1="210" y1="20" x2="300" y2="20" stroke="url(#goldLine2)" stroke-width="1.5"/>
+            <defs>
+              <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#d4a04a" stop-opacity="0"/>
+                <stop offset="100%" stop-color="#d4a04a"/>
+              </linearGradient>
+              <linearGradient id="goldLine2" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#d4a04a"/>
+                <stop offset="100%" stop-color="#d4a04a" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <h1 id="greeting-title">
+          <span class="g-word" data-i="0">Eid</span>
+          <span class="g-word" data-i="1">Ul</span>
+          <span class="g-word" data-i="2">Adha</span>
+          <span class="g-word" data-i="3">Mubarak</span>
+        </h1>
+
+        <!-- Arabic calligraphy accent -->
+        <p id="greeting-arabic">عيد الأضحى مبارك</p>
+
+        <div id="bismillah-decor-bottom">
+          <svg viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="20" x2="90" y2="20" stroke="url(#goldLine)" stroke-width="1.5"/>
+            <circle cx="100" cy="20" r="4" fill="#d4a04a"/>
+            <circle cx="150" cy="20" r="6" fill="none" stroke="#d4a04a" stroke-width="1.5"/>
+            <circle cx="150" cy="20" r="2" fill="#d4a04a"/>
+            <circle cx="200" cy="20" r="4" fill="#d4a04a"/>
+            <line x1="210" y1="20" x2="300" y2="20" stroke="url(#goldLine2)" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Confetti / sparkle canvas -->
+      <canvas id="confetti-canvas"></canvas>
+    </div>
+
+    <!-- ——— STAGE 4: Community ——— -->
+    <div id="community-layer">
+      <p id="community-subtitle">Wishing you and your family a blessed Eid</p>
+
+      <div id="community-figures">
+        <!-- Pair 1: Hugging -->
+        <svg class="community-pair" viewBox="0 0 140 180" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85">
+            <!-- Person A -->
+            <circle cx="55" cy="45" r="18" fill="#1a1a3e"/>
+            <path d="M55 63 Q55 100 50 140 L35 140 Q38 100 40 80 Q42 70 55 63Z" fill="#1a1a3e"/>
+            <path d="M55 63 Q55 100 60 140 L75 140 Q72 100 70 80 Q68 70 55 63Z" fill="#1a1a3e"/>
+            <!-- Person A arm (hugging B) -->
+            <path d="M60 75 Q80 70 90 80" stroke="#1a1a3e" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <!-- Person B -->
+            <circle cx="95" cy="45" r="18" fill="#2d2d5e"/>
+            <path d="M95 63 Q95 100 90 140 L75 140 Q78 100 80 80 Q82 70 95 63Z" fill="#2d2d5e"/>
+            <path d="M95 63 Q95 100 100 140 L115 140 Q112 100 110 80 Q108 70 95 63Z" fill="#2d2d5e"/>
+            <!-- Person B arm (hugging A) -->
+            <path d="M90 75 Q70 70 60 80" stroke="#2d2d5e" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <!-- Heart -->
+            <g transform="translate(72, 28) scale(0.5)" class="pulse-heart">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#c2185b" opacity="0.7"/>
+            </g>
+          </g>
+        </svg>
+
+        <!-- Pair 2: Handshake -->
+        <svg class="community-pair" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85">
+            <!-- Person C -->
+            <circle cx="45" cy="45" r="18" fill="#1a3e1a"/>
+            <path d="M45 63 Q45 100 40 140 L25 140 Q28 100 30 80 Q32 70 45 63Z" fill="#1a3e1a"/>
+            <path d="M45 63 Q45 100 50 140 L65 140 Q62 100 60 80 Q58 70 45 63Z" fill="#1a3e1a"/>
+            <!-- Person C arm reaching -->
+            <path d="M55 80 Q68 85 80 90" stroke="#1a3e1a" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <!-- Person D -->
+            <circle cx="115" cy="45" r="18" fill="#3e2d1a"/>
+            <path d="M115 63 Q115 100 110 140 L95 140 Q98 100 100 80 Q102 70 115 63Z" fill="#3e2d1a"/>
+            <path d="M115 63 Q115 100 120 140 L135 140 Q132 100 130 80 Q128 70 115 63Z" fill="#3e2d1a"/>
+            <!-- Person D arm reaching -->
+            <path d="M105 80 Q92 85 80 90" stroke="#3e2d1a" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <!-- Handshake symbol -->
+            <circle cx="80" cy="90" r="6" fill="none" stroke="#d4a04a" stroke-width="1.5" opacity="0.7"/>
+          </g>
+        </svg>
+
+        <!-- Pair 3: Hugging (variant) -->
+        <svg class="community-pair" viewBox="0 0 140 180" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85">
+            <!-- Person E (taller) -->
+            <circle cx="55" cy="38" r="20" fill="#2e1a3e"/>
+            <path d="M55 58 Q55 100 50 145 L35 145 Q38 100 40 80 Q42 68 55 58Z" fill="#2e1a3e"/>
+            <path d="M55 58 Q55 100 60 145 L75 145 Q72 100 70 80 Q68 68 55 58Z" fill="#2e1a3e"/>
+            <!-- Arm hugging -->
+            <path d="M62 72 Q82 68 92 78" stroke="#2e1a3e" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <!-- Person F (shorter – child) -->
+            <circle cx="92" cy="55" r="14" fill="#3e1a2e"/>
+            <path d="M92 69 Q92 100 88 145 L78 145 Q80 100 82 85 Q84 75 92 69Z" fill="#3e1a2e"/>
+            <path d="M92 69 Q92 100 96 145 L106 145 Q104 100 102 85 Q100 75 92 69Z" fill="#3e1a2e"/>
+            <!-- Child arm -->
+            <path d="M85 78 Q72 75 65 80" stroke="#3e1a2e" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <!-- Sparkle -->
+            <g transform="translate(105, 42)" class="pulse-heart">
+              <polygon points="6,0 7.5,4.5 12,6 7.5,7.5 6,12 4.5,7.5 0,6 4.5,4.5" fill="#fde68a" opacity="0.7"/>
+            </g>
+          </g>
+        </svg>
+
+        <!-- Pair 4: Handshake variant -->
+        <svg class="community-pair hidden-mobile" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.85">
+            <circle cx="48" cy="45" r="18" fill="#1a2e3e"/>
+            <path d="M48 63 Q48 100 43 140 L28 140 Q31 100 33 80 Q35 70 48 63Z" fill="#1a2e3e"/>
+            <path d="M48 63 Q48 100 53 140 L68 140 Q65 100 63 80 Q61 70 48 63Z" fill="#1a2e3e"/>
+            <path d="M58 80 Q71 85 82 90" stroke="#1a2e3e" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <circle cx="112" cy="45" r="18" fill="#3e3e1a"/>
+            <path d="M112 63 Q112 100 107 140 L92 140 Q95 100 97 80 Q99 70 112 63Z" fill="#3e3e1a"/>
+            <path d="M112 63 Q112 100 117 140 L132 140 Q129 100 127 80 Q125 70 112 63Z" fill="#3e3e1a"/>
+            <path d="M102 80 Q89 85 82 90" stroke="#3e3e1a" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <circle cx="82" cy="90" r="6" fill="none" stroke="#d4a04a" stroke-width="1.5" opacity="0.7"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
